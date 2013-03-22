@@ -20,8 +20,8 @@ ser = serial.Serial(PORT, BAUD_RATE)
 
 ## Open Pure Data
 #os.system("killall pd")
+#os.system("pd -nogui -noadc -alsa -audiooutdev 1 -outchannels 6 ./lamps2sound.pd &")
 #os.system("pd -nogui -noadc -alsa -audiooutdev 1 -outchannels 6 ../test_6-channels.pd &")
-
 
 ## Init OSC ##
 client = OSC.OSCClient()
@@ -125,7 +125,7 @@ try:
 		except:
 			print "Can not send to pure data"
 			pass
-		time.sleep(0.3/7) # 7 data sent in a 300ms loop 
+		time.sleep(0.3/7) # 7 data sent in an approximately 300ms loop?? 
 except KeyboardInterrupt:
 #	os.system("killall pd")
 	GPIO.cleanup()
