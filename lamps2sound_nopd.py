@@ -20,16 +20,15 @@ ser = serial.Serial(PORT, BAUD_RATE)
 
 ## Open Pure Data
 #os.system("killall pd")
-os.system("pd -nogui -noadc -alsa -outchannels 6 -audiobuf 100 ./lamps2sound.pd &")
+#os.system("pd -nogui -noadc -alsa -audiooutdev 1 -outchannels 6 -audiobuf 100 ./lamps2sound.pd &")
 #os.system("pd -nogui -noadc -alsa -audiooutdev 1 -outchannels 6 -audiobuf 100 ../test_6-channels.pd &")
-time.sleep(5)
 
 ## Init OSC ##
 client = OSC.OSCClient()
 client.connect(('127.0.0.1', 9001))
 
 ## Maximum volume to deal with the power of the amplifiers ##
-maxVol = 40 #maxVol must be set between 0 and 100
+maxVol = 50 #maxVol must be set between 0 and 100
 
 ## Define analog reading used for volume control ##
 
@@ -128,7 +127,7 @@ try:
 			pass
 #		time.sleep(0.3/7) # 7 data sent in an approximately 300ms loop?? 
 except KeyboardInterrupt:
-	os.system("killall pd")
+#	os.system("killall pd")
 	GPIO.cleanup()
 	ser.close()
 	
